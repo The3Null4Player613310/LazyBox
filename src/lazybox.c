@@ -2,55 +2,74 @@
 #include <string.h>
 #include <stdlib.h>
 
-#define PROG_LEN 64
-#define PROG_NUM 2
+#define ARGS_LEN 256
+//#define PROG_LEN 64
+#define PROG_NUM 3
 
-int helloworld() {
+int echo(int countIn, char *argsIn[]) {
+}
+
+int helloworld(int countIn, char *argsIn[]) {
 	printf("HelloWorld!!!\n");
 	return 0;
 }
 
-int lazybox() {
+int lazybox(int countIn, char *argsIn[]) {
 	printf("LazyBox\n");
 	printf("Usage: lazybox [command] [args]\n");
 }
 
 int wip() {
-	printf("WIP");
+	printf("WIP\n");
 	return 1;
 }
 
-int resolver(int count, char *args[]) {
+int resolver(int countIn, char *argsIn[]) {
 	
 	char progs[PROG_NUM][PROG_LEN] = {
 		"lazybox",
 		"helloworld",
+		"echo",
 		};
 
 	int progid = 0;		
 	for(int i=0; i<PROG_NUM; i++) {
-		if (strcmp(progs[i], args[0])) {
+		if (strcmp(progs[i], argsIn[0])) {
 			progid = i;
 		}
 	}
 
 	switch(progid) {
+		case 2:
+			return echo(countIn, argsIn);
 		case 1:
-			return helloworld();
+			return helloworld(countIn, argsIn);
 		case 0:
 		default:
-			return lazybox();
+			return lazybox(countIn, argsIn);
 	}
 	return wip();
 }
 
 int main(int countIn, char *argsIn[]) {
-	if(strcmp(argsIn[0],"lazybox")) {
-		//wip
-		return wip();
-		int count=countIn-1;
-		return resolver(count, argsIn);
-		//wip
+	//wip
+	char *binary;
+	char *token = strtok(argsIn[0],'\');
+	while(token != NULL) {
+		strcpy(binary, token)
+		token = strtok(NULL,'\');
 	}
+	//wip
+
+	if((strcmp(binary,"lazybox") == 0)) {
+		printf("%s",argsIn[0]);
+		int count=countIn-1;
+		char *args[count];
+		for(int i=0; i<count; i++) {
+			strcpy(args[i],argsIn[i+1]);
+		}
+		return resolver(count, args);
+	}
+
 	return resolver(countIn, argsIn);
 }

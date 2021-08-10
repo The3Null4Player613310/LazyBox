@@ -9,9 +9,11 @@ build: lazybox links
 
 links: 
 	ln bin/lazybox bin/helloworld
+	ln bin/lazybox bin/echo
 
 cleanlinks:
 	rm bin/helloworld
+	rm bin/echo
 
 clean: cleanlinks
 	rm bin/lazybox
